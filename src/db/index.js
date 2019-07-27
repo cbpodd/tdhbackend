@@ -18,3 +18,15 @@ exports.connectToDB = () => {
   );
   mongoose.Promise = Promise;
 };
+
+/**
+ * Day Model
+ * @constructor db.Day.create
+ */
+exports.Trip = require('./day');
+
+/**
+ * DiningHall Model
+ * @constructor db.DiningHall.create
+ */
+exports.Trip = require('./dininghall');

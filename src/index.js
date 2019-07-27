@@ -1,19 +1,26 @@
 require('dotenv').config();
+
 const express = require('express');
+const bodyParser = require('body-parser');
+
+const routes = require('./routes');
+const errorHandler = require('./routes/error');
+
 const app = express();
-const port = process.env.PORT;
-const cors = require('cors');
+const port = process.env.PORT || 8081;
 
-const errorHandler = require('./apis/error');
+app.use(require('cors')());
+app.use(bodyParser.json());
 
-app.use(cors());
+require('./db').connectToDB();
 
-app.use((req, res, next) => {
+app.use('/api', routes);
+
+app.use((_req, _res, next) => {
   const err = new Error('Route not found :(');
   err.status = 404;
-  err.data = req.route;
   next(err);
 });
 
 app.use(errorHandler);
-app.listen(port, () => console.log(`Listening on port ${port}!`));
+app.listen(port);

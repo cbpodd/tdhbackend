@@ -63,4 +63,4 @@ typings/
 # Others
 build/*
 yarn.lock
-.eslintrc.json
+package-lock.json

@@ -7,7 +7,7 @@
 
 const mongoose = require('mongoose');
 
-const menuSchema = require('./menu');
+const diningHallSchema = require('./dininghallday');
 
 const { Schema, model } = mongoose;
 
@@ -15,12 +15,13 @@ const schema = new Schema(
   {
     date: {
       type: Date,
-      required: true
-    },
-    menus: {
-      type: [menuSchema],
       required: true,
-      defualt: []
+      unique: true
+    },
+    diningHalls: {
+      type: [diningHallSchema],
+      required: true,
+      default: []
     }
   },
   { timestamps: true }

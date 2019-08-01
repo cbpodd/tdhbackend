@@ -24,9 +24,3 @@ exports.connectToDB = () => {
  * @constructor db.Day.create
  */
 exports.Trip = require('./day');
-
-/**
- * DiningHall Model
- * @constructor db.DiningHall.create
- */
-exports.Trip = require('./dininghall');

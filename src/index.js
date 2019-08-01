@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 require('./db').connectToDB();
 
-app.use('/api', routes);
+app.use(routes);
 
 app.use((_req, _res, next) => {
   const err = new Error('Route not found :(');

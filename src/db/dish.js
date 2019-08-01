@@ -13,11 +13,6 @@ module.exports = new Schema(
       type: String,
       required: true
     },
-    diningHall: {
-      type: Schema.Types.ObjectId,
-      ref: 'DiningHall',
-      required: true
-    },
     kitchen: {
       type: String,
       required: true

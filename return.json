@@ -1,0 +1,27 @@
+[
+	{
+		"name": "Everybody's Kitchen",
+		"key": "evk",
+		"days": [
+			{
+				"date": "2019-07-29",
+				"menus": [
+					{
+						"name" : "Breakfast",
+						"dishes": [
+							{
+								"name": "Mac and Cheese",
+								"kitchen": "Hot Line",
+								"tags": [
+									"vegetarian",
+									"dairy",
+									"gluten"
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

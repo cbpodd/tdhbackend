@@ -16,8 +16,9 @@ const { Day } = require('./');
  */
 module.exports = async (date, dhKey) => {
   // First, check the redis cache for this date
+  let diningHallDate = null;
   // !!TODO: Get from Redis Cache
-  let diningHallDate = await getFromRedisCache(date);
+  // diningHallDate = await getFromRedisCache(date);
   if (!diningHallDate) {
     // If not found in Redis Cache, check our Database
     diningHallDate = await Day.findOne({ date });
@@ -36,7 +37,7 @@ module.exports = async (date, dhKey) => {
     }
     // Populate Redis cache with diningHallDate
     // !!TODO: Populate Redis Cache
-    await populateRedisCache(date);
+    // await populateRedisCache(date);
   }
   // diningHallDate will be found at this point, and the cache will be fully populated
   const halls = diningHallDate.diningHalls;
@@ -48,3 +49,5 @@ module.exports = async (date, dhKey) => {
   // Return all dining halls (by this point, dhKey is null or undefined)
   return halls;
 };
+
+const getFromWebScraper = async date => {};

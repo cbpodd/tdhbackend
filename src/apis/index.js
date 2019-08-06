@@ -1,19 +1,23 @@
-const { Day } = require('../db');
+const { getFromCache } = require('../db');
 
 exports.getAll = async (req, res, next) => {
+  const { date } = req;
   try {
-    const day = await Day.findOne({ date: req.date });
+    const diningHalls = await getFromCache(date);
+    res.json(diningHalls);
   } catch (err) {
     next(err);
   }
 };
 
 exports.getDH = async (req, res, next) => {
-  // dhName is Dining Hall Name
-  const { dhName } = req.params;
+  const {
+    date,
+    params: { dhName }
+  } = req;
   try {
-    const day = await Day.findOne({ date: req.date });
-    const dining
+    const diningHall = await getFromCache(date, dhName);
+    res.json(diningHall);
   } catch (err) {
     next(err);
   }

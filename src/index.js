@@ -12,7 +12,7 @@ const port = process.env.PORT || 8081;
 app.use(require('cors')());
 app.use(bodyParser.json());
 
-require('./db').connectToDB();
+require('./db').connect;
 
 app.use(routes);
 

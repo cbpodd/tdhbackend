@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-exports.connectToDB = () => {
+const connect = () => {
   const env = process.env.NODE_ENV;
   mongoose.set('debug', env !== 'PRODUCTION');
   mongoose.connect(
@@ -23,4 +23,8 @@ exports.connectToDB = () => {
  * Day Model
  * @constructor db.Day.create
  */
-exports.Trip = require('./day');
+exports.Day = require('./day');
+
+exports.getFromCache = require('./getFromCache');
+
+exports.connect = connect();

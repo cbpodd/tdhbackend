@@ -8,6 +8,11 @@ const { Day } = require('./');
  * included, all dining halls should be returned.
  * @returns {Promise} Returns either an array of or a single dining hall object
  * @async
+ * Note: We have in essence, a three-layer cache system.  Layer one is the redis
+ * cache, layer two is our database, and layer three is the USC website
+ * (accessed through the web scraper).  Since we are not doing any modification,
+ * we only have to worry about GETS, and never have to worry about write-backs.
+ * !!TODO: Implement a cache eviction policy for Redis and the Database.
  */
 module.exports = async (date, dhKey) => {
   // First, check the redis cache for this date
@@ -20,6 +25,11 @@ module.exports = async (date, dhKey) => {
       // If not found in DB, get from webscaper
       // !!TODO: Get from Web Scraper
       diningHallDate = await getFromWebScraper(date);
+      if (!diningHallDate) {
+        const err = new Error('Dining Hall Date not Found.');
+        err.status = 500;
+        throw err;
+      }
       // Dining Hall date will not be null at this point
       // populate database for future requests
       await Day.create(diningHallDate);

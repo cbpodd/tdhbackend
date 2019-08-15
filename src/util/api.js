@@ -1,16 +1,10 @@
 const axios = require('axios');
 
-module.exports = (method, path, data) => {
-  return new Promise((resolve, reject) => {
-    return axios[method.toLowerCase()](
-      `${process.env.API_ENDPOINT}${path}`,
-      data
-    )
-      .then(res => {
-        return resolve(res.data);
-      })
-      .catch(err => {
-        return reject(err.response.data.error);
-      });
-  });
+module.exports = async (method, path, data) => {
+  try {
+    const res = await axios[method.toLowerCase()](path, data);
+    return res.data;
+  } catch (err) {
+    throw err.response.data.error;
+  }
 };

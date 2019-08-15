@@ -5,7 +5,8 @@
     },
     "extends": ["eslint:recommended"],
     "globals": {
-        "process": "readonly"
+        "process": "readonly",
+        "console": "readonly"
     },
     "parserOptions": {
 		"ecmaVersion": 2018,

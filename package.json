@@ -1,6 +1,6 @@
 {
   "name": "tdhbackend",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Backend for the. dining. hall. app at USC",
   "main": "src/index.js",
   "repository": "git@github.com:CameronPodd/tdhbackend",
@@ -10,7 +10,14 @@
   "scripts": {
     "start": "per-env",
     "start:development": "npx nodemon src/index.js",
-    "start:production": "node src/index.js"
+    "start:production": "node src/index.js",
+    "docker:build": "docker build -t thediningapp .",
+    "predocker:start": "npm run docker:build",
+    "docker:start": "docker run -p 8081:8081 --env-file=.env thediningapp",
+    "predocker:push": "npm run docker:build",
+    "docker:push": "heroku container:push -a thediningapp web",
+    "predocker:release": "npm run docker:push",
+    "docker:release": "heroku container:release -a thediningapp web"
   },
   "dependencies": {
     "axios": "^0.19.0",

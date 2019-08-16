@@ -60,3 +60,18 @@ and endpoint 1 returns an array of these.
 }
 
 ```
+
+# Running the App Locally
+
+Docker must be installed to run the app locally.  Install docker, and then run:
+
+	npm run docker:start
+or
+	yarn docker:start
+
+# Release
+
+To release a version of the app, simply run
+	npm run docker:release
+or
+	yarn docker:release
